@@ -1,0 +1,334 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b0b0b;
+  --card-border: rgba(255, 255, 255, 0.12);
+  --text: #f3f0ea;
+  --muted: rgba(243, 240, 234, 0.68);
+  --faint: rgba(243, 240, 234, 0.44);
+  --accent: rgba(255, 255, 255, 0.92);
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.03), transparent 26%);
+  opacity: 0.55;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px 24px 18px;
+}
+
+.game-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 24px 18px;
+}
+
+.hero-copy {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding-top: clamp(22px, 4vh, 64px);
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  max-width: 18ch;
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lead {
+  margin: 14px auto 0;
+  max-width: 54ch;
+  color: var(--muted);
+  font-size: clamp(0.98rem, 1.4vw, 1.08rem);
+  line-height: 1.6;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  color: rgba(255, 255, 255, 0.46);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.hero-sprite {
+  display: block;
+  width: min(22vw, 180px);
+  margin: 0 auto 22px;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.28));
+  user-select: none;
+  pointer-events: none;
+}
+
+.game-stage {
+  width: min(1040px, 100%);
+  margin: 0 auto;
+  margin-top: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    max-height 520ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 420ms ease,
+    transform 420ms ease;
+}
+
+.game-page--open .game-stage {
+  max-height: 620px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.game-stage canvas {
+  display: block;
+  width: 100%;
+  height: min(58vh, 520px);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    opacity 180ms ease;
+  font-weight: 600;
+}
+
+.button-primary {
+  margin: 28px auto 0;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.button-primary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.impressum-page {
+  min-height: 100vh;
+  padding: 0 0 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.impressum-content {
+  width: min(760px, calc(100% - 48px));
+  margin: 0 auto;
+  padding-top: clamp(48px, 10vh, 120px);
+  text-align: left;
+}
+
+.impressum-title {
+  margin: 0 0 56px;
+  color: #8fd8ff;
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+.impressum-address {
+  margin: 0 0 40px;
+  font-style: normal;
+  color: var(--text);
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+.impressum-address p,
+.impressum-contact p {
+  margin: 0;
+}
+
+.impressum-contact h2 {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.impressum-contact {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.impressum-contact a {
+  color: rgba(255, 255, 255, 0.96);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.impressum-footer {
+  width: min(760px, calc(100% - 48px));
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 36px;
+}
+
+.site-footer {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  padding-top: 24px;
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  font-size: clamp(1rem, 2vw, 1.02rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-links a {
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.footer-links a:hover {
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.footer-copy {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.92rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.footer-note {
+  margin: 16px auto 0;
+  max-width: 72ch;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 760px) {
+  .game-page {
+    padding: 20px 16px 14px;
+  }
+
+  .hero-copy {
+    padding-top: 8vh;
+  }
+
+  h1 {
+    max-width: 100%;
+    font-size: 1.32rem;
+  }
+
+  .hero-sprite {
+    width: min(42vw, 150px);
+  }
+
+  .game-stage {
+    margin-top: 28px;
+  }
+
+  .game-stage canvas {
+    height: min(48vh, 400px);
+  }
+
+  .game-page--open .game-stage {
+    max-height: 500px;
+  }
+
+  .footer-links {
+    gap: 18px;
+    font-size: 0.98rem;
+  }
+
+  .footer-copy {
+    font-size: 0.88rem;
+    letter-spacing: 0.16em;
+  }
+
+  .footer-note {
+    font-size: 0.96rem;
+  }
+
+  .impressum-page {
+    padding-bottom: 18px;
+  }
+
+  .impressum-content,
+  .impressum-footer {
+    width: calc(100% - 32px);
+  }
+
+  .impressum-content {
+    padding-top: clamp(36px, 8vh, 72px);
+  }
+
+  .impressum-title {
+    margin-bottom: 40px;
+    font-size: clamp(2.4rem, 12vw, 3.2rem);
+  }
+
+  .impressum-address {
+    margin-bottom: 32px;
+    font-size: 0.98rem;
+  }
+}
